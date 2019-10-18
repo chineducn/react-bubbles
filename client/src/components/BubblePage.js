@@ -15,7 +15,7 @@ const BubblePage = () => {
         setColorList(response.data);
       })
       .catch(error => {
-        debugger
+        alert(error.message);
       });
   };
 
@@ -25,7 +25,10 @@ const BubblePage = () => {
 
   return (
     <>
-      <ColorList colors={colorList} updateColors={setColorList} />
+      <ColorList
+        colors={colorList}
+        updateColors={setColorList}
+      />
       <Bubbles colors={colorList} />
     </>
   );
