@@ -32,12 +32,21 @@ const BubblePage = () => {
 
   const deleteColor = color => {
     // make a delete request to delete this color
+    axios()
+      .delete(`http://localhost:5000/api/${color.id}`)
+      .then(response => {
+        debugger
+      })
+      .catch(error => {
+        debugger
+      });
   };
 
   return (
     <>
       <ColorList
         colors={colorList}
+        deleteColor={deleteColor}
         updateColors={setColorList}
       />
       <Bubbles colors={colorList} />
