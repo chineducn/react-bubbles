@@ -24,14 +24,13 @@ const BubblePage = () => {
   }, [])
 
   const saveEdit = color => {
-    debugger
     axios()
-      .put()
+      .put(`http://localhost:5000/api/colors/${color.id}`, color)
       .then(response => {
-        debugger
+        getColors();
       })
       .catch(error => {
-        debugger
+        alert(error.message);
       });
     
   };
@@ -53,7 +52,7 @@ const BubblePage = () => {
       <ColorList
         colors={colorList}
         deleteColor={deleteColor}
-        updateColors={setColorList}
+        saveEdit={saveEdit}
       />
       <Bubbles colors={colorList} />
     </>

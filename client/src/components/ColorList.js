@@ -6,7 +6,7 @@ const initialColor = {
   code: { hex: "" }
 };
 
-const ColorList = ({ colors, deleteColor }) => {
+const ColorList = ({ colors, deleteColor, saveEdit }) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
@@ -16,8 +16,9 @@ const ColorList = ({ colors, deleteColor }) => {
     setColorToEdit(color);
   };
 
-  const saveEdit = e => {
+  const saveEdited = e => {
     e.preventDefault();
+    saveEdit(colorToEdit);
     // Make a put request to save your updated color
     // think about where will you get the id from...
     // where is is saved right now?
@@ -43,7 +44,7 @@ const ColorList = ({ colors, deleteColor }) => {
         ))}
       </ul>
       {editing && (
-        <form onSubmit={saveEdit}>
+        <form onSubmit={saveEdited}>
           <legend>edit color</legend>
           <label>
             color name:
