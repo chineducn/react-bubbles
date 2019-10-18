@@ -27,9 +27,10 @@ const ColorList = ({ colors, deleteColor, saveEdit, addColor }) => {
   const saveAddedd = e => {
     e.preventDefault();
     addColor(colorToAdd);
-    // Make a put request to save your updated color
-    // think about where will you get the id from...
-    // where is is saved right now?
+  };
+  const clearForm = e => {
+    e.preventDefault();
+    setColorToAdd(initialColor);
   };
 
   return (
@@ -107,8 +108,8 @@ const ColorList = ({ colors, deleteColor, saveEdit, addColor }) => {
             />
           </label>
           <div className="button-row">
-            <button type="submit">save</button>
-            {/* <button onClick={() => setEditing(false)}>cancel</button> */}
+            <button type="submit">add</button>
+            <button onClick={clearForm}>clear</button>
           </div>
         </form>
     </div>
