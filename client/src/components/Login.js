@@ -16,7 +16,7 @@ const Login = props => {
         props.history.push('/bubbles');
       })
       .catch(error => {
-        debugger
+        alert(error.response.data.error);
       });
   };
   // make a post request to retrieve a token from the api
