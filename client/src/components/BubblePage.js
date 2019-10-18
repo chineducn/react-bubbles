@@ -48,11 +48,10 @@ const BubblePage = () => {
   };
 
   const addColor = color => {
-    debugger
     axios()
-      .post()
+      .post('http://localhost:5000/api/colors', color)
       .then(response => {
-        debugger
+        setColorList(response.data);
       })
       .catch(error => {
         alert(error.message);
