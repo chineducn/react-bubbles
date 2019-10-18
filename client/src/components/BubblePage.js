@@ -47,12 +47,25 @@ const BubblePage = () => {
       });
   };
 
+  const addColor = color => {
+    debugger
+    axios()
+      .post()
+      .then(response => {
+        debugger
+      })
+      .catch(error => {
+        alert(error.message);
+      });
+  }
+
   return (
     <>
       <ColorList
         colors={colorList}
         deleteColor={deleteColor}
         saveEdit={saveEdit}
+        addColor={addColor}
       />
       <Bubbles colors={colorList} />
     </>
