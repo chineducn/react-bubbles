@@ -1,5 +1,15 @@
 import React, { useState } from "react";
+import styled from 'styled-components';
 
+const StyledSection = styled.section`
+ display: flex;
+ align-items: center;
+
+ .delete {
+   margin-right: 1.5rem;
+   cursor: pointer;
+ }
+`;
 const initialColor = {
   color: "",
   code: { hex: "" }
@@ -38,18 +48,21 @@ const ColorList = ({ colors, deleteColor, saveEdit, addColor }) => {
       <p>colors</p>
       <ul>
         {colors.map(color => (
-          <li key={color.color} onClick={() => editColor(color)}>
-            <span>
-              <span className="delete" onClick={() => deleteColor(color)}>
+          <StyledSection key={color.color}>
+            <span className="delete" onClick={() => deleteColor(color)}>
                 x
-              </span>{" "}
+            </span>
+           <li onClick={() => editColor(color)}>
+            <span>
+              {" "}
               {color.color}
             </span>
             <div
               className="color-box"
               style={{ backgroundColor: color.code.hex }}
             />
-          </li>
+            </li>
+          </StyledSection>
         ))}
       </ul>
       {editing ? (
