@@ -31,6 +31,7 @@ const ColorList = ({ colors, deleteColor, saveEdit, addColor }) => {
   const clearForm = e => {
     e.preventDefault();
     setColorToAdd(initialColor);
+    setEditing(false);
   };
 
   return (
@@ -52,7 +53,7 @@ const ColorList = ({ colors, deleteColor, saveEdit, addColor }) => {
           </li>
         ))}
       </ul>
-      {editing && (
+      {editing ? (
         <form onSubmit={saveEdited}>
           <legend>edit color</legend>
           <label>
@@ -78,13 +79,12 @@ const ColorList = ({ colors, deleteColor, saveEdit, addColor }) => {
           </label>
           <div className="button-row">
             <button type="submit">save</button>
-            <button onClick={() => setEditing(false)}>cancel</button>
+            <button onClick={clearForm}>cancel</button>
           </div>
         </form>
-      )}
-      <div className="spacer" />
-      {/* stretch - build another form here to add a color */}
-      <form onSubmit={saveAddedd}>
+      )
+        : (
+          <form onSubmit={saveAddedd}>
           <legend>add color</legend>
           <label>
             color name:
@@ -112,6 +112,11 @@ const ColorList = ({ colors, deleteColor, saveEdit, addColor }) => {
             <button onClick={clearForm}>clear</button>
           </div>
         </form>
+        )
+      }
+      <div className="spacer" />
+      {/* stretch - build another form here to add a color */}
+      
     </div>
   );
 };
