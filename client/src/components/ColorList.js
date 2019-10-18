@@ -6,10 +6,11 @@ const initialColor = {
   code: { hex: "" }
 };
 
-const ColorList = ({ colors, deleteColor, saveEdit }) => {
+const ColorList = ({ colors, deleteColor, saveEdit, addColor }) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
+  const [colorToAdd, setColorToAdd] = useState(initialColor);
 
   const editColor = color => {
     setEditing(true);
@@ -19,6 +20,13 @@ const ColorList = ({ colors, deleteColor, saveEdit }) => {
   const saveEdited = e => {
     e.preventDefault();
     saveEdit(colorToEdit);
+    // Make a put request to save your updated color
+    // think about where will you get the id from...
+    // where is is saved right now?
+  };
+  const saveAddedd = e => {
+    e.preventDefault();
+    addColor(colorToAdd);
     // Make a put request to save your updated color
     // think about where will you get the id from...
     // where is is saved right now?
@@ -75,6 +83,34 @@ const ColorList = ({ colors, deleteColor, saveEdit }) => {
       )}
       <div className="spacer" />
       {/* stretch - build another form here to add a color */}
+      <form onSubmit={saveAddedd}>
+          <legend>add color</legend>
+          <label>
+            color name:
+            <input
+              onChange={e =>
+                setColorToAdd({ ...colorToAdd, color: e.target.value })
+              }
+              value={colorToAdd.color}
+            />
+          </label>
+          <label>
+            hex code:
+            <input
+              onChange={e =>
+                setColorToAdd({
+                  ...colorToAdd,
+                  code: { hex: e.target.value }
+                })
+              }
+              value={colorToAdd.code.hex}
+            />
+          </label>
+          <div className="button-row">
+            <button type="submit">save</button>
+            {/* <button onClick={() => setEditing(false)}>cancel</button> */}
+          </div>
+        </form>
     </div>
   );
 };
