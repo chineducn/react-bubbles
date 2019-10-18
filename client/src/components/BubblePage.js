@@ -23,11 +23,17 @@ const BubblePage = () => {
     getColors();
   }, [])
 
-  const saveEdit = e => {
-    e.preventDefault();
-    // Make a put request to save your updated color
-    // think about where will you get the id from...
-    // where is is saved right now?
+  const saveEdit = color => {
+    debugger
+    axios()
+      .put()
+      .then(response => {
+        debugger
+      })
+      .catch(error => {
+        debugger
+      });
+    
   };
 
   const deleteColor = color => {
